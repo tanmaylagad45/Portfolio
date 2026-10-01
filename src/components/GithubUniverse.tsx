@@ -23,53 +23,53 @@ interface GithubProfile {
   bio: string | null;
 }
 
+// Fallback repo collection if GitHub API is rate-limited
+const FALLBACK_REPOS: GithubRepo[] = [
+  {
+    id: 101,
+    name: 'NEXUS-AI-Forensics',
+    description: 'AI-Powered Criminal Network Analysis Platform for Internal Smart India Hackathon 2026.',
+    html_url: 'https://github.com/tanmaylagad45',
+    stargazers_count: 5,
+    forks_count: 2,
+    language: 'Python',
+    updated_at: '2026-09-15T00:00:00Z',
+  },
+  {
+    id: 102,
+    name: 'velocity-sports-shop',
+    description: 'Interactive sports merchandise e-commerce platform with dynamic cart and responsive UI.',
+    html_url: 'https://github.com/tanmaylagad45',
+    stargazers_count: 3,
+    forks_count: 1,
+    language: 'JavaScript',
+    updated_at: '2026-08-20T00:00:00Z',
+  },
+  {
+    id: 103,
+    name: 'ai-ml-experiments',
+    description: 'Exploratory data analysis, regression pipelines, neural classification, and NLP experiments.',
+    html_url: 'https://github.com/tanmaylagad45',
+    stargazers_count: 4,
+    forks_count: 0,
+    language: 'Python',
+    updated_at: '2026-07-10T00:00:00Z',
+  },
+  {
+    id: 104,
+    name: 'portfolio-cyber',
+    description: 'Futuristic 3D interactive developer portfolio built with React, TypeScript & Three.js.',
+    html_url: 'https://github.com/tanmaylagad45',
+    stargazers_count: 6,
+    forks_count: 1,
+    language: 'TypeScript',
+    updated_at: '2026-10-01T00:00:00Z',
+  },
+];
+
 export const GithubUniverse: React.FC = () => {
   const [profile, setProfile] = useState<GithubProfile | null>(null);
   const [repos, setRepos] = useState<GithubRepo[]>([]);
-
-  // Fallback repo collection if GitHub API is rate-limited
-  const fallbackRepos: GithubRepo[] = [
-    {
-      id: 101,
-      name: 'NEXUS-AI-Forensics',
-      description: 'AI-Powered Criminal Network Analysis Platform for Internal Smart India Hackathon 2026.',
-      html_url: 'https://github.com/tanmaylagad45',
-      stargazers_count: 5,
-      forks_count: 2,
-      language: 'Python',
-      updated_at: '2026-09-15T00:00:00Z',
-    },
-    {
-      id: 102,
-      name: 'velocity-sports-shop',
-      description: 'Interactive sports merchandise e-commerce platform with dynamic cart and responsive UI.',
-      html_url: 'https://github.com/tanmaylagad45',
-      stargazers_count: 3,
-      forks_count: 1,
-      language: 'JavaScript',
-      updated_at: '2026-08-20T00:00:00Z',
-    },
-    {
-      id: 103,
-      name: 'ai-ml-experiments',
-      description: 'Exploratory data analysis, regression pipelines, neural classification, and NLP experiments.',
-      html_url: 'https://github.com/tanmaylagad45',
-      stargazers_count: 4,
-      forks_count: 0,
-      language: 'Python',
-      updated_at: '2026-07-10T00:00:00Z',
-    },
-    {
-      id: 104,
-      name: 'portfolio-cyber',
-      description: 'Futuristic 3D interactive developer portfolio built with React, TypeScript & Three.js.',
-      html_url: 'https://github.com/tanmaylagad45',
-      stargazers_count: 6,
-      forks_count: 1,
-      language: 'TypeScript',
-      updated_at: '2026-10-01T00:00:00Z',
-    },
-  ];
 
   useEffect(() => {
     const fetchGitHubData = async () => {
@@ -86,13 +86,13 @@ export const GithubUniverse: React.FC = () => {
           if (Array.isArray(reposData) && reposData.length > 0) {
             setRepos(reposData);
           } else {
-            setRepos(fallbackRepos);
+            setRepos(FALLBACK_REPOS);
           }
         } else {
-          setRepos(fallbackRepos);
+          setRepos(FALLBACK_REPOS);
         }
       } catch {
-        setRepos(fallbackRepos);
+        setRepos(FALLBACK_REPOS);
       }
     };
 

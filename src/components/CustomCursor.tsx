@@ -5,14 +5,13 @@ export const CustomCursor: React.FC = () => {
   const [trailingPos, setTrailingPos] = useState({ x: -100, y: -100 });
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [isTouch, setIsTouch] = useState(false);
+  const [isTouch] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.matchMedia('(pointer: coarse)').matches;
+  });
 
   useEffect(() => {
-    // Detect touch device
-    if (window.matchMedia('(pointer: coarse)').matches) {
-      setIsTouch(true);
-      return;
-    }
+    if (isTouch) return;
 
     const onMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
@@ -57,7 +56,7 @@ export const CustomCursor: React.FC = () => {
       document.removeEventListener('mouseleave', onMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [position.x, position.y]);
+  }, [position.x, position.y, isTouch]);
 
   if (isTouch || !isVisible) return null;
 
