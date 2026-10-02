@@ -7,12 +7,14 @@ interface NexusCanvasProps {
   interactive?: boolean;
   onNodeSelect?: (entity: ProjectEntity) => void;
   className?: string;
+  theme?: 'dark' | 'light';
 }
 
 export const NexusNetworkCanvas: React.FC<NexusCanvasProps> = ({
   interactive = true,
   onNodeSelect,
   className = 'w-full h-80',
+  theme = 'dark',
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [hoveredNode, setHoveredNode] = useState<ProjectEntity | null>(null);
@@ -58,12 +60,12 @@ export const NexusNetworkCanvas: React.FC<NexusCanvasProps> = ({
         y: coord.y * height,
         baseX: coord.x * width,
         baseY: coord.y * height,
-        radius: ent.type === 'CASE' ? 14 : 11,
+        radius: ent.type === 'CASE' ? 12 : 9,
         color:
           ent.type === 'PERSON'
-            ? '#00FF88'
+            ? '#10B981'
             : ent.type === 'ORGANIZATION'
-            ? '#00F0FF'
+            ? '#0EA5E9'
             : ent.type === 'LOCATION'
             ? '#F59E0B'
             : ent.type === 'EVIDENCE'
@@ -81,11 +83,11 @@ export const NexusNetworkCanvas: React.FC<NexusCanvasProps> = ({
     }
 
     const packets: Packet[] = [
-      { from: 'e1', to: 'e3', progress: 0.1, speed: 0.008 },
-      { from: 'e3', to: 'e4', progress: 0.5, speed: 0.007 },
-      { from: 'e5', to: 'e1', progress: 0.3, speed: 0.009 },
-      { from: 'e2', to: 'e4', progress: 0.8, speed: 0.006 },
-      { from: 'e5', to: 'e6', progress: 0.2, speed: 0.007 },
+      { from: 'e1', to: 'e3', progress: 0.1, speed: 0.006 },
+      { from: 'e3', to: 'e4', progress: 0.5, speed: 0.005 },
+      { from: 'e5', to: 'e1', progress: 0.3, speed: 0.007 },
+      { from: 'e2', to: 'e4', progress: 0.8, speed: 0.005 },
+      { from: 'e5', to: 'e6', progress: 0.2, speed: 0.006 },
     ];
 
     let mouseX = -999;
@@ -101,7 +103,7 @@ export const NexusNetworkCanvas: React.FC<NexusCanvasProps> = ({
       for (const node of nodePositions) {
         const dx = mouseX - node.x;
         const dy = mouseY - node.y;
-        if (Math.sqrt(dx * dx + dy * dy) < node.radius + 8) {
+        if (Math.sqrt(dx * dx + dy * dy) < node.radius + 10) {
           found = rawEntities.find((r) => r.id === node.id) || null;
           break;
         }
@@ -118,11 +120,11 @@ export const NexusNetworkCanvas: React.FC<NexusCanvasProps> = ({
       for (const node of nodePositions) {
         const dx = clickX - node.x;
         const dy = clickY - node.y;
-        if (Math.sqrt(dx * dx + dy * dy) < node.radius + 8) {
+        if (Math.sqrt(dx * dx + dy * dy) < node.radius + 10) {
           const ent = rawEntities.find((r) => r.id === node.id) || null;
           setSelectedNode(ent);
           if (ent) {
-            playCyberBeep(850, 0.06, 'triangle');
+            playCyberBeep(850, 0.05, 'sine');
             if (onNodeSelect) onNodeSelect(ent);
           }
           break;
@@ -136,13 +138,13 @@ export const NexusNetworkCanvas: React.FC<NexusCanvasProps> = ({
     let time = 0;
 
     const render = () => {
-      time += 0.02;
+      time += 0.015;
       ctx.clearRect(0, 0, width, height);
 
       // Micro float oscillation for nodes
       nodePositions.forEach((node, i) => {
-        node.x = node.baseX + Math.sin(time + i) * 3;
-        node.y = node.baseY + Math.cos(time + i * 1.3) * 3;
+        node.x = node.baseX + Math.sin(time + i) * 2;
+        node.y = node.baseY + Math.cos(time + i * 1.3) * 2;
       });
 
       const currentActive = hoveredNode || selectedNode;
@@ -165,14 +167,11 @@ export const NexusNetworkCanvas: React.FC<NexusCanvasProps> = ({
           ctx.lineTo(target.x, target.y);
 
           if (isConnectedToActive) {
-            ctx.strokeStyle = '#00FF88';
-            ctx.lineWidth = 2.5;
-            ctx.shadowColor = '#00FF88';
-            ctx.shadowBlur = 12;
+            ctx.strokeStyle = '#10B981';
+            ctx.lineWidth = 1.8;
           } else {
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+            ctx.strokeStyle = theme === 'dark' ? 'rgba(148, 163, 184, 0.2)' : 'rgba(15, 23, 42, 0.12)';
             ctx.lineWidth = 1;
-            ctx.shadowBlur = 0;
           }
           ctx.stroke();
         });
@@ -190,11 +189,9 @@ export const NexusNetworkCanvas: React.FC<NexusCanvasProps> = ({
         const px = fromNode.x + (toNode.x - fromNode.x) * pkt.progress;
         const py = fromNode.y + (toNode.y - fromNode.y) * pkt.progress;
 
-        ctx.fillStyle = '#00F0FF';
-        ctx.shadowColor = '#00F0FF';
-        ctx.shadowBlur = 6;
+        ctx.fillStyle = '#10B981';
         ctx.beginPath();
-        ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+        ctx.arc(px, py, 2, 0, Math.PI * 2);
         ctx.fill();
       });
 
@@ -204,37 +201,33 @@ export const NexusNetworkCanvas: React.FC<NexusCanvasProps> = ({
         const isNeighbor = currentActive && currentActive.connections.includes(node.id);
         const isDimmed = currentActive && !isSelf && !isNeighbor;
 
-        ctx.save();
-        ctx.shadowColor = node.color;
-        ctx.shadowBlur = isSelf ? 22 : isNeighbor ? 12 : 6;
-
-        // Outer pulsing ring if active
+        // Outer ring if active
         if (isSelf) {
           ctx.strokeStyle = node.color;
-          ctx.lineWidth = 2;
+          ctx.lineWidth = 1.5;
           ctx.beginPath();
-          ctx.arc(node.x, node.y, node.radius + 6 + Math.sin(time * 4) * 2, 0, Math.PI * 2);
+          ctx.arc(node.x, node.y, node.radius + 4, 0, Math.PI * 2);
           ctx.stroke();
         }
 
         // Main node body
-        ctx.fillStyle = isDimmed ? 'rgba(30, 41, 59, 0.5)' : node.color;
+        ctx.fillStyle = isDimmed ? (theme === 'dark' ? 'rgba(51, 65, 85, 0.4)' : 'rgba(203, 213, 225, 0.5)') : node.color;
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
         ctx.fill();
 
-        ctx.restore();
-
         // Node Label
-        ctx.font = isSelf ? 'bold 11px "Space Grotesk", sans-serif' : '10px "JetBrains Mono", monospace';
-        ctx.fillStyle = isDimmed ? 'rgba(148, 163, 184, 0.4)' : isSelf ? '#FFFFFF' : '#CBD5E1';
+        ctx.font = isSelf ? 'bold 11px "Inter", sans-serif' : '10px "Inter", sans-serif';
+        ctx.fillStyle = isDimmed
+          ? (theme === 'dark' ? 'rgba(148, 163, 184, 0.4)' : 'rgba(100, 116, 139, 0.4)')
+          : (theme === 'dark' ? '#F8FAFC' : '#0F172A');
         ctx.textAlign = 'center';
-        ctx.fillText(node.name, node.x, node.y + node.radius + 14);
+        ctx.fillText(node.name, node.x, node.y + node.radius + 12);
 
         // Small Type label under name
         ctx.font = '8px "JetBrains Mono", monospace';
-        ctx.fillStyle = isDimmed ? 'rgba(100, 116, 139, 0.3)' : node.color;
-        ctx.fillText(node.type, node.x, node.y + node.radius + 24);
+        ctx.fillStyle = isDimmed ? 'transparent' : (theme === 'dark' ? '#94A3B8' : '#64748B');
+        ctx.fillText(node.type, node.x, node.y + node.radius + 22);
       });
 
       animId = requestAnimationFrame(render);
@@ -248,7 +241,7 @@ export const NexusNetworkCanvas: React.FC<NexusCanvasProps> = ({
       canvas.removeEventListener('mousemove', onMouseMove);
       canvas.removeEventListener('click', onClick);
     };
-  }, [interactive, onNodeSelect, rawEntities, hoveredNode, selectedNode]);
+  }, [interactive, onNodeSelect, rawEntities, hoveredNode, selectedNode, theme]);
 
   const activeEntity = hoveredNode || selectedNode;
 
@@ -256,15 +249,15 @@ export const NexusNetworkCanvas: React.FC<NexusCanvasProps> = ({
     <div className={`relative ${className} select-none`}>
       <canvas ref={canvasRef} className="w-full h-full cursor-pointer" />
 
-      {/* Cyber HUD Info Tooltip overlay when hovering a node */}
+      {/* Info Tooltip overlay when hovering a node */}
       {activeEntity && (
-        <div className="absolute top-3 left-3 max-w-[260px] p-3 rounded-xl bg-slate-950/90 border border-emerald-500/50 backdrop-blur-xl shadow-[0_0_20px_rgba(0,255,136,0.2)] pointer-events-none transition-all duration-200">
+        <div className="absolute top-3 left-3 max-w-[260px] p-3 rounded-xl bg-slate-900/95 border border-slate-700/80 backdrop-blur-md shadow-lg pointer-events-none transition-all duration-150">
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-[9px] font-mono-tech uppercase px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">
+            <span className="text-[9px] font-mono-tech uppercase px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
               {activeEntity.type}
             </span>
             <span className="text-[9px] font-mono-tech text-slate-400">
-              {activeEntity.connections.length} LINKS
+              {activeEntity.connections.length} Links
             </span>
           </div>
 
@@ -272,24 +265,24 @@ export const NexusNetworkCanvas: React.FC<NexusCanvasProps> = ({
             {activeEntity.name}
           </h4>
 
-          <p className="text-[11px] text-slate-300 font-mono-tech leading-snug">
+          <p className="text-[11px] text-slate-300 leading-snug">
             {activeEntity.details}
           </p>
 
-          <div className="mt-2 pt-1.5 border-t border-slate-800 text-[9px] font-mono-tech text-cyan-400 flex items-center justify-between">
-            <span>AI HYPERGRAPH ENTITY</span>
-            <span>CLICK TO DRILL DOWN</span>
+          <div className="mt-2 pt-1.5 border-t border-slate-800 text-[9px] font-mono-tech text-slate-400 flex items-center justify-between">
+            <span>Knowledge Graph Entity</span>
+            <span className="text-emerald-400">Click to Inspect</span>
           </div>
         </div>
       )}
 
       {/* Legend badge */}
-      <div className="absolute bottom-2 right-3 hidden sm:flex items-center gap-2 text-[9px] font-mono-tech text-slate-400 bg-slate-950/80 px-2.5 py-1 rounded-md border border-slate-800 pointer-events-none">
+      <div className="absolute bottom-2 right-3 hidden sm:flex items-center gap-2 text-[10px] font-mono-tech text-slate-400 bg-slate-900/80 px-2.5 py-1 rounded-md border border-slate-800 pointer-events-none">
         <span className="flex items-center gap-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#00FF88]" /> Person
+          <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" /> Person
         </span>
         <span className="flex items-center gap-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#00F0FF]" /> Org
+          <span className="w-1.5 h-1.5 rounded-full bg-[#0EA5E9]" /> Org
         </span>
         <span className="flex items-center gap-1">
           <span className="w-1.5 h-1.5 rounded-full bg-[#EC4899]" /> Evidence

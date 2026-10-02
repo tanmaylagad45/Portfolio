@@ -42,28 +42,25 @@ export const Journey: React.FC = () => {
   };
 
   return (
-    <section id="journey" className="relative py-24 px-4 sm:px-6 lg:px-8 border-t border-slate-900 overflow-hidden">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/2 right-1/3 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none" />
-
+    <section id="journey" className="relative py-28 px-4 sm:px-6 lg:px-8 bg-white border-t border-slate-200/80 overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col items-start mb-12">
-          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-slate-700/80 text-[11px] font-mono-tech text-cyan-400 mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-[11px] font-mono-tech text-slate-600 mb-3 shadow-2xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
             <span>06 // TRAJECTORY &amp; EVOLUTION</span>
           </div>
-          <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight uppercase">
-            MY <span className="text-cyan-400 glow-text-cyan">JOURNEY</span>
+          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight">
+            MY <span className="text-emerald-700">JOURNEY</span>
           </h2>
-          <div className="h-1 w-24 bg-gradient-to-r from-cyan-400 to-emerald-400 mt-2 rounded-full" />
-          <p className="text-slate-400 text-sm sm:text-base mt-3 max-w-xl">
+          <div className="h-1 w-16 bg-emerald-600 mt-3 rounded-full" />
+          <p className="text-slate-600 text-sm sm:text-base mt-3 max-w-xl">
             A chronological timeline of milestones, hackathon breakthroughs, and engineering steps from school to graduation horizon.
           </p>
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap items-center gap-2 mb-12">
+        <div className="flex flex-wrap items-center gap-2 mb-10">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -71,10 +68,10 @@ export const Journey: React.FC = () => {
                 playCyberBeep(600, 0.03, 'sine');
                 setFilter(cat);
               }}
-              className={`px-4 py-1.5 rounded-lg text-xs font-mono-tech tracking-wider transition-all duration-200 cursor-pointer ${
+              className={`px-4 py-1.5 rounded-lg text-xs font-semibold tracking-wide transition-all duration-150 cursor-pointer ${
                 filter === cat
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 shadow-[0_0_12px_rgba(0,240,255,0.2)]'
-                  : 'bg-slate-900/60 text-slate-400 border border-slate-800 hover:text-slate-200'
+                  ? 'bg-slate-900 text-white shadow-xs'
+                  : 'bg-slate-100 text-slate-600 border border-slate-200/80 hover:text-slate-900'
               }`}
             >
               {cat.toUpperCase()}
@@ -98,28 +95,28 @@ export const Journey: React.FC = () => {
                   playCyberBeep(650 + idx * 30, 0.02, 'sine');
                 }}
                 onMouseLeave={() => setActiveMilestone(null)}
-                className={`glass-panel p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between group ${
+                className={`bg-white p-5 rounded-2xl border transition-all duration-200 flex flex-col justify-between group shadow-xs ${
                   isPodium
-                    ? 'border-amber-500/50 bg-amber-950/20 shadow-[0_0_20px_rgba(245,158,11,0.15)]'
+                    ? 'border-amber-300 bg-amber-50/20'
                     : isTarget
-                    ? 'border-emerald-500/50 bg-emerald-950/20'
+                    ? 'border-emerald-300 bg-emerald-50/20'
                     : isActive
-                    ? 'border-cyan-400/50 -translate-y-1 shadow-[0_0_20px_rgba(0,240,255,0.12)]'
-                    : 'border-white/10 hover:border-slate-700'
+                    ? 'border-slate-300 shadow-sm -translate-y-0.5'
+                    : 'border-slate-200/90 hover:border-slate-300'
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="px-2.5 py-1 rounded text-xs font-mono-tech font-bold bg-slate-900 border border-slate-800 text-cyan-300">
+                    <span className="px-2.5 py-1 rounded text-xs font-mono-tech font-bold bg-slate-100 border border-slate-200 text-slate-800">
                       {milestone.year}
                     </span>
                     <span
                       className={`text-[10px] font-mono-tech px-2 py-0.5 rounded-full border ${
                         milestone.category === 'Hackathon'
-                          ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+                          ? 'bg-amber-50 text-amber-800 border-amber-200 font-semibold'
                           : milestone.category === 'AI/ML'
-                          ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
-                          : 'bg-slate-900 text-slate-400 border-slate-800'
+                          ? 'bg-emerald-50 text-emerald-800 border-emerald-200 font-semibold'
+                          : 'bg-slate-50 text-slate-600 border-slate-200'
                       }`}
                     >
                       {milestone.category}
@@ -130,27 +127,27 @@ export const Journey: React.FC = () => {
                     <div
                       className={`p-2 rounded-lg mt-0.5 ${
                         isPodium
-                          ? 'bg-amber-500/20 text-amber-300'
-                          : 'bg-slate-900 text-cyan-400 border border-slate-800'
+                          ? 'bg-amber-100 text-amber-800'
+                          : 'bg-slate-100 text-slate-700'
                       }`}
                     >
                       <Icon className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="font-heading font-bold text-base text-white group-hover:text-cyan-300 transition-colors">
+                      <h4 className="font-heading font-bold text-base text-slate-900 group-hover:text-emerald-700 transition-colors">
                         {milestone.title}
                       </h4>
-                      <p className="text-xs font-mono-tech text-slate-300 mt-1">
+                      <p className="text-xs text-slate-500 mt-1">
                         {milestone.subtitle}
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between text-[10px] font-mono-tech text-slate-500">
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-mono-tech text-slate-400">
                   <span>STEP 0{idx + 1}</span>
-                  <span className="text-emerald-400 group-hover:translate-x-1 transition-transform">
-                    {isTarget ? 'HORIZON TARGET ★' : 'LOGGED ✓'}
+                  <span className="text-emerald-700 font-semibold group-hover:translate-x-0.5 transition-transform">
+                    {isTarget ? 'TARGET ★' : 'LOGGED ✓'}
                   </span>
                 </div>
               </div>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
   ArrowRight,
   Download,
-  Cpu,
   ChevronDown
 } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
@@ -24,13 +23,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
   // Typewriter effect for animated titles
   useEffect(() => {
     const currentRole = roles[roleIndex];
-    const typingSpeed = isDeleting ? 30 : 70;
+    const typingSpeed = isDeleting ? 30 : 65;
 
     const timeout = setTimeout(() => {
       if (!isDeleting) {
         setDisplayText(currentRole.substring(0, displayText.length + 1));
         if (displayText.length + 1 === currentRole.length) {
-          setTimeout(() => setIsDeleting(true), 1800);
+          setTimeout(() => setIsDeleting(true), 2000);
         }
       } else {
         setDisplayText(currentRole.substring(0, displayText.length - 1));
@@ -53,51 +52,47 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col justify-center pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden cyber-grid"
+      className="relative min-h-screen flex flex-col justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#F7F8FA] light-dot-grid"
     >
-      {/* Background radial glow */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/3 translate-y-1/3 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[160px] pointer-events-none" />
+      {/* Subtle soft background accents (no heavy neon) */}
+      <div className="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-emerald-500/[0.04] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/3 translate-y-1/3 w-[600px] h-[600px] bg-teal-500/[0.03] rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
-        {/* Left Column: Hero Typography & Info */}
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        {/* Left Column: Hero Typography & Recruiter-Friendly Info */}
         <div className="lg:col-span-6 z-10 flex flex-col justify-center">
           {/* Status Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/80 border border-emerald-500/30 text-emerald-400 text-xs font-mono-tech mb-6 w-fit backdrop-blur-md shadow-[0_0_15px_rgba(0,255,136,0.15)]">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200/90 text-slate-700 text-xs font-medium mb-6 w-fit shadow-xs">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
             </span>
-            <span className="tracking-wide">AI/ML &amp; SOFTWARE ENGINEERING INGENUITY</span>
+            <span className="tracking-normal font-sans">Computer Engineering Student • AI/ML &amp; Full-Stack</span>
           </div>
 
           {/* Prominent Name */}
-          <h1 className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-white uppercase leading-[1.08] mb-3">
-            <span className="block text-slate-300 text-sm sm:text-base font-mono-tech tracking-widest text-emerald-400 mb-1">
-              &lt;HELLO WORLD // I AM /&gt;
-            </span>
+          <h1 className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-slate-900 leading-[1.08] mb-3">
             {PORTFOLIO_DATA.personal.name}
           </h1>
 
           {/* Core Subtitle */}
-          <h2 className="font-heading font-semibold text-lg sm:text-xl lg:text-2xl text-slate-300 tracking-wider mb-4 flex items-center gap-2">
-            <Cpu className="w-5 h-5 text-cyan-400" />
-            <span className="text-cyan-400 tracking-widest font-mono-tech">
-              {PORTFOLIO_DATA.personal.status.toUpperCase()}
-            </span>
+          <h2 className="font-heading font-semibold text-lg sm:text-xl text-slate-700 tracking-normal mb-4 flex items-center gap-2">
+            <span>3rd Year B.Tech / BE</span>
+            <span className="text-slate-400">•</span>
+            <span className="text-emerald-700 font-medium">{PORTFOLIO_DATA.personal.college}</span>
           </h2>
 
           {/* Animated Role Sequence Typewriter */}
           <div className="h-9 flex items-center mb-6">
-            <div className="px-3.5 py-1.5 rounded-md bg-slate-900/90 border border-slate-800 text-sm sm:text-base font-mono-tech font-bold text-emerald-300 flex items-center gap-2 shadow-inner">
-              <span className="text-slate-500">&gt;</span>
+            <div className="px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-sm sm:text-base font-mono-tech font-semibold text-slate-800 flex items-center gap-2 shadow-xs">
+              <span className="text-emerald-600 font-bold">&gt;</span>
               <span>{displayText}</span>
-              <span className="w-2 h-4 bg-emerald-400 animate-pulse inline-block" />
+              <span className="w-2 h-4 bg-emerald-600 animate-pulse inline-block" />
             </div>
           </div>
 
           {/* Main Introduction */}
-          <p className="text-slate-300 text-base sm:text-lg max-w-xl font-normal leading-relaxed mb-8 border-l-2 border-emerald-500/40 pl-4 bg-gradient-to-r from-emerald-500/5 to-transparent py-1">
+          <p className="text-slate-600 text-base sm:text-lg max-w-xl font-normal leading-relaxed mb-8 border-l-2 border-emerald-600 pl-4 py-1">
             "{PORTFOLIO_DATA.personal.heroIntro}"
           </p>
 
@@ -105,7 +100,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
           <div className="flex flex-wrap items-center gap-4 mb-8">
             <button
               onClick={handleScrollToProjects}
-              className="group relative px-6 py-3.5 rounded-lg bg-emerald-400 text-slate-950 font-mono-tech font-bold text-sm tracking-wider flex items-center gap-2.5 transition-all duration-300 hover:bg-emerald-300 hover:shadow-[0_0_25px_rgba(0,255,136,0.6)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+              className="group relative px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm tracking-normal flex items-center gap-2.5 transition-all duration-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
             >
               <span>EXPLORE MY WORK</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -116,20 +111,20 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
                 playCyberBeep(880, 0.04, 'sine');
                 onOpenResume();
               }}
-              className="px-6 py-3.5 rounded-lg bg-slate-900/80 border border-slate-700/80 hover:border-cyan-400/70 text-slate-200 hover:text-cyan-300 font-mono-tech font-bold text-sm tracking-wider flex items-center gap-2.5 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,240,255,0.25)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+              className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-semibold text-sm tracking-normal flex items-center gap-2.5 transition-all duration-200 shadow-xs hover:shadow-sm hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
             >
-              <Download className="w-4 h-4 text-cyan-400" />
+              <Download className="w-4 h-4 text-slate-600" />
               <span>DOWNLOAD RESUME</span>
             </button>
           </div>
 
           {/* Social Links & Location Quick Indicator */}
-          <div className="flex items-center gap-5 pt-4 border-t border-slate-800/80">
-            <span className="text-xs font-mono-tech text-slate-400 uppercase tracking-widest">
-              UPLINKS:
+          <div className="flex items-center gap-5 pt-4 border-t border-slate-200">
+            <span className="text-xs font-mono-tech text-slate-500 uppercase tracking-wider">
+              CONNECT:
             </span>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               {/* LinkedIn */}
               <a
                 href={PORTFOLIO_DATA.socials.linkedin}
@@ -137,7 +132,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
                 rel="noopener noreferrer"
                 title="LinkedIn Profile"
                 onClick={() => playCyberBeep(600, 0.03, 'sine')}
-                className="p-2.5 rounded-lg bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-cyan-400 hover:border-cyan-400/50 hover:shadow-[0_0_12px_rgba(0,240,255,0.3)] transition-all hover:-translate-y-0.5 cursor-pointer"
+                className="p-2.5 rounded-lg bg-white border border-slate-200 text-slate-600 hover:text-emerald-700 hover:border-slate-300 shadow-xs transition-all hover:-translate-y-0.5 cursor-pointer"
               >
                 <LinkedinIcon className="w-4 h-4" />
               </a>
@@ -149,7 +144,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
                 rel="noopener noreferrer"
                 title="GitHub Profile"
                 onClick={() => playCyberBeep(650, 0.03, 'sine')}
-                className="p-2.5 rounded-lg bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-emerald-400 hover:border-emerald-400/50 hover:shadow-[0_0_12px_rgba(0,255,136,0.3)] transition-all hover:-translate-y-0.5 cursor-pointer"
+                className="p-2.5 rounded-lg bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:border-slate-300 shadow-xs transition-all hover:-translate-y-0.5 cursor-pointer"
               >
                 <GithubIcon className="w-4 h-4" />
               </a>
@@ -161,34 +156,35 @@ export const Hero: React.FC<HeroProps> = ({ onOpenResume }) => {
                 rel="noopener noreferrer"
                 title="Instagram Profile"
                 onClick={() => playCyberBeep(700, 0.03, 'sine')}
-                className="p-2.5 rounded-lg bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-pink-400 hover:border-pink-400/50 hover:shadow-[0_0_12px_rgba(244,114,182,0.3)] transition-all hover:-translate-y-0.5 cursor-pointer"
+                className="p-2.5 rounded-lg bg-white border border-slate-200 text-slate-600 hover:text-pink-600 hover:border-slate-300 shadow-xs transition-all hover:-translate-y-0.5 cursor-pointer"
               >
                 <InstagramIcon className="w-4 h-4" />
               </a>
             </div>
 
-            <div className="hidden sm:flex items-center gap-1.5 ml-auto text-xs font-mono-tech text-slate-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <div className="hidden sm:flex items-center gap-2 ml-auto text-xs font-medium text-slate-500">
+              <span className="w-2 h-2 rounded-full bg-emerald-600" />
               <span>Kharghar, Navi Mumbai</span>
             </div>
           </div>
         </div>
 
-        {/* Right Column: 3D Interactive AI/Code Core */}
+        {/* Right Column: 3D Sleek Metallic Core */}
         <div className="lg:col-span-6 relative flex items-center justify-center">
           <ThreeHeroScene />
         </div>
       </div>
 
       {/* Down indicator */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-slate-500 hover:text-emerald-400 transition-colors cursor-pointer pointer-events-auto"
+      <div
+        className="absolute bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-slate-400 hover:text-slate-700 transition-colors cursor-pointer pointer-events-auto"
         onClick={() => {
           const el = document.getElementById('about');
           if (el) el.scrollIntoView({ behavior: 'smooth' });
         }}
       >
         <span className="text-[10px] font-mono-tech tracking-widest uppercase">SCROLL</span>
-        <ChevronDown className="w-4 h-4 animate-bounce text-emerald-400" />
+        <ChevronDown className="w-4 h-4 animate-bounce text-slate-500" />
       </div>
     </section>
   );

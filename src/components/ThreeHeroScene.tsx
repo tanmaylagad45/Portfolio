@@ -13,12 +13,12 @@ interface NodeData {
 }
 
 const NODES_DATA: NodeData[] = [
-  { id: 'ai-ml', name: 'AI / ML', angle: 0, radius: 3.4, height: 0.8, color: '#00FF88', category: 'Core Focus' },
-  { id: 'code', name: 'CODE', angle: (Math.PI * 2) / 6, radius: 3.2, height: -0.7, color: '#00F0FF', category: 'Full-Stack' },
-  { id: 'data', name: 'DATA', angle: (Math.PI * 4) / 6, radius: 3.5, height: 1.1, color: '#10B981', category: 'Databases' },
-  { id: 'projects', name: 'PROJECTS', angle: (Math.PI * 6) / 6, radius: 3.3, height: -0.9, color: '#38BDF8', category: 'Hands-on' },
-  { id: 'nexus', name: 'NEXUS', angle: (Math.PI * 8) / 6, radius: 3.6, height: 0.5, color: '#00FF88', category: 'SIH Winner' },
-  { id: 'web', name: 'WEB', angle: (Math.PI * 10) / 6, radius: 3.1, height: -0.3, color: '#A78BFA', category: 'Modern UI' },
+  { id: 'ai-ml', name: 'AI / ML', angle: 0, radius: 3.4, height: 0.7, color: '#16A34A', category: 'Core Focus' },
+  { id: 'code', name: 'Full-Stack', angle: (Math.PI * 2) / 6, radius: 3.2, height: -0.6, color: '#0F766E', category: 'Software' },
+  { id: 'data', name: 'Databases', angle: (Math.PI * 4) / 6, radius: 3.5, height: 0.9, color: '#2563EB', category: 'Pipelines' },
+  { id: 'projects', name: 'Projects', angle: (Math.PI * 6) / 6, radius: 3.3, height: -0.8, color: '#4F46E5', category: 'Hands-on' },
+  { id: 'nexus', name: 'NEXUS', angle: (Math.PI * 8) / 6, radius: 3.6, height: 0.4, color: '#D97706', category: 'SIH Winner' },
+  { id: 'web', name: 'Web Dev', angle: (Math.PI * 10) / 6, radius: 3.1, height: -0.3, color: '#0D9488', category: 'Modern UI' },
 ];
 
 export const ThreeHeroScene: React.FC = () => {
@@ -34,7 +34,7 @@ export const ThreeHeroScene: React.FC = () => {
 
     // Scene, Camera, Renderer
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x04060a, 0.05);
+    scene.fog = new THREE.FogExp2(0xF7F8FA, 0.035);
 
     const camera = new THREE.PerspectiveCamera(
       45,
@@ -42,7 +42,7 @@ export const ThreeHeroScene: React.FC = () => {
       0.1,
       100
     );
-    camera.position.set(0, 0, checkMobile ? 10 : 8.5);
+    camera.position.set(0, 0, checkMobile ? 9.8 : 8.2);
 
     const renderer = new THREE.WebGLRenderer({
       antialias: !checkMobile,
@@ -52,69 +52,69 @@ export const ThreeHeroScene: React.FC = () => {
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, checkMobile ? 1.25 : 1.75));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
+    renderer.toneMappingExposure = 1.0;
     container.appendChild(renderer.domElement);
 
     // Group that holds everything to allow uniform rotation/tilt
     const worldGroup = new THREE.Group();
     scene.add(worldGroup);
 
-    // --- CENTRAL CORE: MULTI-LAYERED CYBER NUCLEUS ---
-    // 1. Inner glowing sphere
-    const innerCoreGeo = new THREE.IcosahedronGeometry(1.1, 3);
+    // --- SLEEK METALLIC / GLASS-LIKE NUCLEUS ---
+    // 1. Sleek metallic faceted inner core
+    const innerCoreGeo = new THREE.IcosahedronGeometry(1.15, 2);
     const innerCoreMat = new THREE.MeshStandardMaterial({
-      color: 0x051b14,
-      emissive: 0x00ff88,
-      emissiveIntensity: 0.8,
-      roughness: 0.2,
-      metalness: 0.8,
+      color: 0x1E293B,
+      metalness: 0.85,
+      roughness: 0.25,
+      emissive: 0x0F172A,
+      emissiveIntensity: 0.15,
       wireframe: false,
     });
     const innerCoreMesh = new THREE.Mesh(innerCoreGeo, innerCoreMat);
     worldGroup.add(innerCoreMesh);
 
-    // 2. Faceted geometric wireframe cage
-    const wireCoreGeo = new THREE.IcosahedronGeometry(1.4, 1);
+    // 2. Refined geometric wireframe cage (platinum/slate)
+    const wireCoreGeo = new THREE.IcosahedronGeometry(1.42, 1);
     const wireCoreMat = new THREE.MeshBasicMaterial({
-      color: 0x00f0ff,
+      color: 0x94A3B8,
       wireframe: true,
       transparent: true,
-      opacity: 0.45,
+      opacity: 0.35,
     });
     const wireCoreMesh = new THREE.Mesh(wireCoreGeo, wireCoreMat);
     worldGroup.add(wireCoreMesh);
 
-    // 3. Floating points around core
+    // 3. Floating points around core (subtle emerald & slate)
     const corePointsGeo = new THREE.IcosahedronGeometry(1.65, 2);
     const corePointsMat = new THREE.PointsMaterial({
-      color: 0x00ff88,
-      size: 0.04,
+      color: 0x16A34A,
+      size: 0.03,
       transparent: true,
-      opacity: 0.75,
+      opacity: 0.45,
     });
     const corePointsMesh = new THREE.Points(corePointsGeo, corePointsMat);
     worldGroup.add(corePointsMesh);
 
-    // 4. Orbital Cyber Rings
+    // 4. Subtle Orbital Tracks / Rings
     const ringMat1 = new THREE.MeshBasicMaterial({
-      color: 0x00ff88,
+      color: 0xCBD5E1,
       transparent: true,
-      opacity: 0.35,
+      opacity: 0.4,
       side: THREE.DoubleSide,
     });
-    const ringGeo1 = new THREE.RingGeometry(2.1, 2.14, 64);
+    const ringGeo1 = new THREE.RingGeometry(2.1, 2.12, 64);
     const ringMesh1 = new THREE.Mesh(ringGeo1, ringMat1);
     ringMesh1.rotation.x = Math.PI * 0.45;
     ringMesh1.rotation.y = Math.PI * 0.15;
     worldGroup.add(ringMesh1);
 
     const ringMat2 = new THREE.MeshBasicMaterial({
-      color: 0x00f0ff,
+      color: 0x16A34A,
       transparent: true,
       opacity: 0.25,
       side: THREE.DoubleSide,
     });
-    const ringGeo2 = new THREE.RingGeometry(2.5, 2.53, 64);
+    const ringGeo2 = new THREE.RingGeometry(2.5, 2.52, 64);
     const ringMesh2 = new THREE.Mesh(ringGeo2, ringMat2);
     ringMesh2.rotation.x = -Math.PI * 0.35;
     ringMesh2.rotation.y = -Math.PI * 0.25;
@@ -125,22 +125,21 @@ export const ThreeHeroScene: React.FC = () => {
     const lineGeometries: { geo: THREE.BufferGeometry; line: THREE.Line; nodeIndex: number }[] = [];
 
     NODES_DATA.forEach((node, i) => {
-      const nodeGeo = new THREE.SphereGeometry(0.16, 16, 16);
+      const nodeGeo = new THREE.SphereGeometry(0.14, 20, 20);
       const nodeMat = new THREE.MeshStandardMaterial({
         color: node.color,
-        emissive: node.color,
-        emissiveIntensity: 0.9,
-        roughness: 0.1,
+        metalness: 0.4,
+        roughness: 0.3,
       });
       const nodeMesh = new THREE.Mesh(nodeGeo, nodeMat);
 
-      // Node halo
-      const haloGeo = new THREE.SphereGeometry(0.24, 12, 12);
+      // Subtle node halo
+      const haloGeo = new THREE.SphereGeometry(0.2, 12, 12);
       const haloMat = new THREE.MeshBasicMaterial({
         color: node.color,
         wireframe: true,
         transparent: true,
-        opacity: 0.4,
+        opacity: 0.25,
       });
       const haloMesh = new THREE.Mesh(haloGeo, haloMat);
       nodeMesh.add(haloMesh);
@@ -154,22 +153,22 @@ export const ThreeHeroScene: React.FC = () => {
 
       nodeMeshes.push({ mesh: nodeMesh, data: node, initialPos });
 
-      // Connecting laser line to core
+      // Connecting line to core
       const lineGeo = new THREE.BufferGeometry().setFromPoints([
         new THREE.Vector3(0, 0, 0),
         new THREE.Vector3(x, y, z),
       ]);
       const lineMat = new THREE.LineBasicMaterial({
-        color: node.color,
+        color: 0xCBD5E1,
         transparent: true,
-        opacity: 0.3,
+        opacity: 0.35,
       });
       const line = new THREE.Line(lineGeo, lineMat);
       worldGroup.add(line);
       lineGeometries.push({ geo: lineGeo, line, nodeIndex: i });
     });
 
-    // Interconnect adjacent nodes
+    // Interconnect adjacent nodes with subtle thin lines
     for (let i = 0; i < nodeMeshes.length; i++) {
       const nextIdx = (i + 1) % nodeMeshes.length;
       const interLineGeo = new THREE.BufferGeometry().setFromPoints([
@@ -177,30 +176,31 @@ export const ThreeHeroScene: React.FC = () => {
         nodeMeshes[nextIdx].mesh.position,
       ]);
       const interLineMat = new THREE.LineBasicMaterial({
-        color: 0x00f0ff,
+        color: 0xE2E8F0,
         transparent: true,
-        opacity: 0.15,
+        opacity: 0.25,
       });
       const interLine = new THREE.Line(interLineGeo, interLineMat);
       worldGroup.add(interLine);
     }
 
-    // --- PARTICLE FIELD ---
-    const particleCount = checkMobile ? 350 : 1100;
+    // --- REFINED MINIMAL PARTICLES (drastically reduced) ---
+    // User requested: small, low opacity, slow, subtle, mostly background, reduced on mobile
+    const particleCount = checkMobile ? 40 : 120;
     const particlePositions = new Float32Array(particleCount * 3);
     const particleColors = new Float32Array(particleCount * 3);
 
-    const c1 = new THREE.Color(0x00ff88);
-    const c2 = new THREE.Color(0x00f0ff);
-    const c3 = new THREE.Color(0x475569);
+    const c1 = new THREE.Color(0x94A3B8); // Slate
+    const c2 = new THREE.Color(0x16A34A); // Emerald
+    const c3 = new THREE.Color(0xCBD5E1); // Light slate
 
     for (let i = 0; i < particleCount; i++) {
-      particlePositions[i * 3] = (Math.random() - 0.5) * 22;
-      particlePositions[i * 3 + 1] = (Math.random() - 0.5) * 22;
-      particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 16 - 2;
+      particlePositions[i * 3] = (Math.random() - 0.5) * 20;
+      particlePositions[i * 3 + 1] = (Math.random() - 0.5) * 20;
+      particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 14 - 1;
 
       const mix = Math.random();
-      const col = mix > 0.6 ? c1 : mix > 0.3 ? c2 : c3;
+      const col = mix > 0.7 ? c2 : mix > 0.3 ? c1 : c3;
       particleColors[i * 3] = col.r;
       particleColors[i * 3 + 1] = col.g;
       particleColors[i * 3 + 2] = col.b;
@@ -211,29 +211,29 @@ export const ThreeHeroScene: React.FC = () => {
     particleGeo.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
 
     const particleMat = new THREE.PointsMaterial({
-      size: checkMobile ? 0.04 : 0.05,
+      size: checkMobile ? 0.035 : 0.04,
       vertexColors: true,
       transparent: true,
-      opacity: 0.65,
+      opacity: 0.45,
     });
     const particleSystem = new THREE.Points(particleGeo, particleMat);
     scene.add(particleSystem);
 
-    // --- LIGHTING ---
-    const ambientLight = new THREE.AmbientLight(0x0b1120, 2.5);
+    // --- SOFT REFINED LIGHTING (no harsh neon) ---
+    const ambientLight = new THREE.AmbientLight(0xFFFFFF, 1.8);
     scene.add(ambientLight);
 
-    const coreLightGreen = new THREE.PointLight(0x00ff88, 3, 10);
-    coreLightGreen.position.set(0, 0, 0);
-    scene.add(coreLightGreen);
+    const keyLight = new THREE.DirectionalLight(0xF8FAFC, 1.6);
+    keyLight.position.set(5, 7, 6);
+    scene.add(keyLight);
 
-    const keyLightCyan = new THREE.DirectionalLight(0x00f0ff, 2);
-    keyLightCyan.position.set(5, 5, 5);
-    scene.add(keyLightCyan);
+    const softFillLight = new THREE.DirectionalLight(0xE2E8F0, 0.9);
+    softFillLight.position.set(-5, -3, 3);
+    scene.add(softFillLight);
 
-    const rimLight = new THREE.DirectionalLight(0x8b5cf6, 1.2);
-    rimLight.position.set(-5, -4, -2);
-    scene.add(rimLight);
+    const subtleAccentLight = new THREE.PointLight(0x16A34A, 1.2, 12);
+    subtleAccentLight.position.set(0, 0, 0);
+    scene.add(subtleAccentLight);
 
     // --- MOUSE & SCROLL STATE ---
     let mouseX = 0;
@@ -280,43 +280,43 @@ export const ThreeHeroScene: React.FC = () => {
       const elapsedTime = (performance.now() - startTime) * 0.001;
 
       // Smooth dampening for mouse
-      mouseX += (targetMouseX - mouseX) * 0.05;
-      mouseY += (targetMouseY - mouseY) * 0.05;
-      scrollY += (targetScrollY - scrollY) * 0.08;
+      mouseX += (targetMouseX - mouseX) * 0.04;
+      mouseY += (targetMouseY - mouseY) * 0.04;
+      scrollY += (targetScrollY - scrollY) * 0.06;
 
-      // Rotate inner & wire core
-      innerCoreMesh.rotation.y = elapsedTime * 0.35;
-      innerCoreMesh.rotation.x = Math.sin(elapsedTime * 0.2) * 0.2;
-      wireCoreMesh.rotation.y = -elapsedTime * 0.2;
-      wireCoreMesh.rotation.z = Math.cos(elapsedTime * 0.25) * 0.2;
-      corePointsMesh.rotation.y = elapsedTime * 0.15;
+      // Slow elegant rotation
+      innerCoreMesh.rotation.y = elapsedTime * 0.2;
+      innerCoreMesh.rotation.x = Math.sin(elapsedTime * 0.15) * 0.15;
+      wireCoreMesh.rotation.y = -elapsedTime * 0.12;
+      wireCoreMesh.rotation.z = Math.cos(elapsedTime * 0.18) * 0.15;
+      corePointsMesh.rotation.y = elapsedTime * 0.08;
 
-      // Pulse core scale subtly
-      const pulse = 1 + Math.sin(elapsedTime * 2.2) * 0.035;
+      // Pulse core scale very subtly
+      const pulse = 1 + Math.sin(elapsedTime * 1.5) * 0.02;
       innerCoreMesh.scale.set(pulse, pulse, pulse);
 
       // Rotate orbital rings
-      ringMesh1.rotation.z = elapsedTime * 0.25;
-      ringMesh2.rotation.z = -elapsedTime * 0.2;
+      ringMesh1.rotation.z = elapsedTime * 0.15;
+      ringMesh2.rotation.z = -elapsedTime * 0.12;
 
       // World tilt based on mouse and scroll
-      worldGroup.rotation.y = mouseX * 0.35 + elapsedTime * 0.05;
-      worldGroup.rotation.x = -mouseY * 0.25 + (scrollY * 0.0004);
-      worldGroup.position.y = -scrollY * 0.0015;
+      worldGroup.rotation.y = mouseX * 0.25 + elapsedTime * 0.03;
+      worldGroup.rotation.x = -mouseY * 0.18 + (scrollY * 0.0003);
+      worldGroup.position.y = -scrollY * 0.001;
 
-      // Camera parallax
-      camera.position.x = mouseX * 0.5;
-      camera.position.y = mouseY * 0.35;
+      // Subtle camera parallax
+      camera.position.x = mouseX * 0.35;
+      camera.position.y = mouseY * 0.25;
 
       // Satellite orbital oscillation & line updates
       const updatedScreenPositions: { [key: string]: { x: number; y: number; visible: boolean } } = {};
 
       nodeMeshes.forEach((item, idx) => {
-        const orbitSpeed = 0.15;
+        const orbitSpeed = 0.1;
         const currentAngle = item.data.angle + elapsedTime * orbitSpeed;
         const x = Math.cos(currentAngle) * item.data.radius;
         const z = Math.sin(currentAngle) * item.data.radius;
-        const y = item.data.height + Math.sin(elapsedTime * 1.5 + idx) * 0.2;
+        const y = item.data.height + Math.sin(elapsedTime * 1.2 + idx) * 0.15;
 
         item.mesh.position.set(x, y, z);
 
@@ -328,7 +328,7 @@ export const ThreeHeroScene: React.FC = () => {
           positions.needsUpdate = true;
         }
 
-        // Project 3D coordinate to 2D screen coordinates for DOM tags
+        // Project 3D coordinate to 2D screen coordinates
         item.mesh.getWorldPosition(tempVec);
         tempVec.project(camera);
 
@@ -345,9 +345,9 @@ export const ThreeHeroScene: React.FC = () => {
 
       setNodeScreenPos(updatedScreenPositions);
 
-      // Drift particle system
-      particleSystem.rotation.y = elapsedTime * 0.02 + mouseX * 0.08;
-      particleSystem.rotation.x = mouseY * 0.05;
+      // Slow drift particle system
+      particleSystem.rotation.y = elapsedTime * 0.01 + mouseX * 0.04;
+      particleSystem.rotation.x = mouseY * 0.03;
 
       renderer.render(scene, camera);
     };
@@ -373,24 +373,18 @@ export const ThreeHeroScene: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[520px] sm:h-[600px] lg:h-[700px] flex items-center justify-center select-none overflow-hidden">
+    <div className="relative w-full h-[480px] sm:h-[560px] lg:h-[640px] flex items-center justify-center select-none overflow-hidden">
       {/* Three.js Canvas Container */}
       <div ref={mountRef} className="absolute inset-0 cursor-grab active:cursor-grabbing" />
 
-      {/* Cyber HUD Overlays */}
-      <div className="absolute top-4 right-4 pointer-events-none hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900/60 border border-slate-700/60 backdrop-blur-md text-[11px] font-mono-tech text-emerald-400">
-        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-        <span>3D DIGITAL CORE // ONLINE</span>
+      {/* Clean Minimal Core Indicator */}
+      <div className="absolute top-4 right-4 pointer-events-none hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 border border-slate-200/90 shadow-xs backdrop-blur-md text-[11px] font-mono-tech text-slate-700">
+        <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
+        <span>3D Interactive Architecture</span>
       </div>
 
-      <div className="absolute bottom-4 left-4 pointer-events-none hidden sm:flex flex-col gap-1 text-[11px] font-mono-tech text-slate-400 bg-slate-900/50 p-2.5 rounded-lg border border-slate-800 backdrop-blur-md">
-        <div className="flex items-center gap-1.5 text-cyan-400">
-          <span className="text-[10px] text-slate-500">SYS:</span>
-          <span>NEURAL_TOPOLOGY_V3</span>
-        </div>
-        <div className="text-[10px] text-slate-400">
-          NODES: 6 CONNECTED • RENDER: WEBGL2
-        </div>
+      <div className="absolute bottom-4 left-4 pointer-events-none hidden sm:flex items-center gap-2 text-[11px] font-mono-tech text-slate-500 bg-white/90 px-3 py-1.5 rounded-lg border border-slate-200/80 shadow-xs backdrop-blur-md">
+        <span>Drag to rotate • 6 interconnected domains</span>
       </div>
 
       {/* Dynamic 2D HTML Projection Nodes linked to 3D positions */}
@@ -415,14 +409,14 @@ export const ThreeHeroScene: React.FC = () => {
               onMouseLeave={() => setActiveNode(null)}
               onClick={() => {
                 setActiveNode(node.id);
-                playCyberBeep(920, 0.08, 'triangle');
+                playCyberBeep(920, 0.06, 'triangle');
               }}
             >
               <div
-                className={`relative px-2.5 py-1 rounded-md text-[11px] font-mono-tech font-semibold tracking-wider transition-all duration-300 backdrop-blur-md flex items-center gap-1.5 ${
+                className={`relative px-2.5 py-1 rounded-full text-[11px] font-medium tracking-tight transition-all duration-200 backdrop-blur-md flex items-center gap-1.5 ${
                   isSelected
-                    ? 'bg-[#00FF88]/20 border border-[#00FF88] text-white shadow-[0_0_15px_rgba(0,255,136,0.6)] scale-110'
-                    : 'bg-slate-900/70 border border-slate-700/80 text-slate-200 group-hover:border-emerald-400 group-hover:text-emerald-300'
+                    ? 'bg-slate-900 text-white shadow-md scale-105'
+                    : 'bg-white/95 border border-slate-200 text-slate-800 shadow-xs hover:border-slate-300 hover:bg-white'
                 }`}
               >
                 <span
@@ -433,7 +427,7 @@ export const ThreeHeroScene: React.FC = () => {
 
                 {/* Subtitle tag on hover */}
                 {isSelected && (
-                  <span className="text-[9px] text-cyan-300 ml-1 border-l border-white/20 pl-1">
+                  <span className="text-[10px] text-slate-300 ml-1 border-l border-white/20 pl-1 font-mono-tech">
                     {node.category}
                   </span>
                 )}

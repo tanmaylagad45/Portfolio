@@ -1,6 +1,6 @@
 import React from 'react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
-import { ArrowUp, Terminal } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 import { playCyberBeep } from '../utils/audio';
 
 export const Footer: React.FC = () => {
@@ -10,30 +10,29 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="relative py-12 px-4 sm:px-6 lg:px-8 border-t border-slate-900 bg-[#03050a] text-slate-400 font-mono-tech text-xs">
+    <footer className="relative py-12 px-4 sm:px-6 lg:px-8 border-t border-slate-800 bg-[#0F172A] text-slate-400 text-xs">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Left: Built with curiosity, code & AI + Copyright */}
-        <div className="flex flex-col items-center md:items-start gap-1.5 text-center md:text-left">
+        <div className="flex flex-col items-center md:items-start gap-1 text-center md:text-left">
           <div className="flex items-center gap-2 text-white font-medium">
-            <Terminal className="w-3.5 h-3.5 text-emerald-400" />
             <span>Built with curiosity, code &amp; AI.</span>
           </div>
           <div>
-            &copy; 2026 <span className="text-slate-200">{PORTFOLIO_DATA.personal.name}</span>
+            &copy; 2026 <span className="text-slate-200 font-medium">{PORTFOLIO_DATA.personal.name}</span>
           </div>
-          <div className="text-[11px] text-slate-400">
+          <div className="text-[11px] text-slate-500">
             {PORTFOLIO_DATA.personal.location}
           </div>
         </div>
 
         {/* Center: Social links row */}
-        <div className="flex items-center gap-4 text-xs">
+        <div className="flex items-center gap-4 text-xs font-medium">
           <a
             href={PORTFOLIO_DATA.socials.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => playCyberBeep(600, 0.02, 'sine')}
-            className="hover:text-cyan-400 transition-colors"
+            className="text-slate-300 hover:text-emerald-400 transition-colors"
           >
             LinkedIn
           </a>
@@ -43,7 +42,7 @@ export const Footer: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => playCyberBeep(650, 0.02, 'sine')}
-            className="hover:text-emerald-400 transition-colors"
+            className="text-slate-300 hover:text-emerald-400 transition-colors"
           >
             GitHub
           </a>
@@ -53,7 +52,7 @@ export const Footer: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => playCyberBeep(700, 0.02, 'sine')}
-            className="hover:text-pink-400 transition-colors"
+            className="text-slate-300 hover:text-emerald-400 transition-colors"
           >
             Instagram
           </a>
@@ -62,7 +61,7 @@ export const Footer: React.FC = () => {
         {/* Right: Back to Top */}
         <button
           onClick={scrollToTop}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-emerald-400 hover:border-emerald-500/40 transition-all cursor-pointer"
+          className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-slate-600 transition-all cursor-pointer font-medium"
         >
           <span>BACK TO TOP</span>
           <ArrowUp className="w-3.5 h-3.5" />

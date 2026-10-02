@@ -17,7 +17,7 @@ export function App() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen bg-[#04060A] text-slate-100 selection:bg-[#00FF88]/30 selection:text-[#00FF88] overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#F7F8FA] text-[#111827] selection:bg-[#16A34A]/20 selection:text-[#16A34A] overflow-x-hidden">
       {/* Custom Cyber Cursor */}
       <CustomCursor />
 

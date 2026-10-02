@@ -57,8 +57,8 @@ const FALLBACK_REPOS: GithubRepo[] = [
   },
   {
     id: 104,
-    name: 'portfolio-cyber',
-    description: 'Futuristic 3D interactive developer portfolio built with React, TypeScript & Three.js.',
+    name: 'portfolio-minimal',
+    description: 'Sleek, minimal, recruiter-friendly developer portfolio with 3D interactive core.',
     html_url: 'https://github.com/tanmaylagad45',
     stargazers_count: 6,
     forks_count: 1,
@@ -99,7 +99,7 @@ export const GithubUniverse: React.FC = () => {
     fetchGitHubData();
   }, []);
 
-  // Generate simulated futuristic contribution activity grid
+  // Standard GitHub contribution activity simulation
   const activityCells = Array.from({ length: 48 }, (_, i) => {
     const seed = (i * 7 + 13) % 10;
     let level = 0;
@@ -110,42 +110,39 @@ export const GithubUniverse: React.FC = () => {
   });
 
   return (
-    <section id="github" className="relative py-24 px-4 sm:px-6 lg:px-8 border-t border-slate-900 overflow-hidden">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/2 left-1/3 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[160px] pointer-events-none" />
-
+    <section id="github" className="relative py-28 px-4 sm:px-6 lg:px-8 bg-[#F8FAFC] border-t border-slate-200/80 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col items-start mb-16">
-          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-slate-700/80 text-[11px] font-mono-tech text-emerald-400 mb-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            <span>07 // OPEN REPOSITORIES &amp; SOURCE</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-[11px] font-mono-tech text-slate-600 mb-3 shadow-2xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+            <span>07 // OPEN REPOSITORIES &amp; CODE</span>
           </div>
-          <h2 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight uppercase">
-            MY <span className="text-emerald-400 glow-text-green">CODE UNIVERSE</span>
+          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight">
+            MY <span className="text-emerald-700">CODE UNIVERSE</span>
           </h2>
-          <div className="h-1 w-24 bg-gradient-to-r from-emerald-400 to-cyan-400 mt-2 rounded-full" />
-          <p className="text-slate-400 text-sm sm:text-base mt-3 max-w-xl">
-            Real-time public code repositories, open-source work, and version control telemetry directly from GitHub.
+          <div className="h-1 w-16 bg-emerald-600 mt-3 rounded-full" />
+          <p className="text-slate-600 text-sm sm:text-base mt-3 max-w-xl">
+            Public code repositories, open-source work, and version control telemetry directly from GitHub.
           </p>
         </div>
 
         {/* GitHub Header Banner */}
-        <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 mb-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/90 mb-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xs">
           <div className="flex items-center gap-4">
-            <div className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 text-emerald-400 shadow-[0_0_20px_rgba(0,255,136,0.15)]">
+            <div className="p-3.5 rounded-2xl bg-slate-900 text-white shadow-xs">
               <GithubIcon className="w-8 h-8" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-heading font-black text-xl text-white">
+                <h3 className="font-heading font-bold text-xl text-slate-900">
                   @tanmaylagad45
                 </h3>
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono-tech bg-emerald-500/10 border border-emerald-500/30 text-emerald-400">
-                  PUBLIC DEV
+                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono-tech bg-emerald-50 border border-emerald-200 text-emerald-800 font-semibold">
+                  Public Developer
                 </span>
               </div>
-              <p className="text-xs font-mono-tech text-slate-400 mt-1">
+              <p className="text-xs text-slate-500 mt-1">
                 Computer Engineering Student • MGM College of Engineering
               </p>
             </div>
@@ -154,15 +151,15 @@ export const GithubUniverse: React.FC = () => {
           <div className="flex flex-wrap items-center gap-4 w-full md:w-auto">
             {/* Real Stats chips */}
             <div className="flex items-center gap-3">
-              <div className="px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-center">
-                <span className="text-[10px] font-mono-tech text-slate-400 block">REPOS</span>
-                <span className="text-sm font-heading font-bold text-white">
+              <div className="px-3.5 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-center">
+                <span className="text-[10px] font-mono-tech text-slate-400 block font-semibold">REPOS</span>
+                <span className="text-sm font-heading font-extrabold text-slate-900">
                   {profile ? profile.public_repos : '10+'}
                 </span>
               </div>
-              <div className="px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-center">
-                <span className="text-[10px] font-mono-tech text-slate-400 block">STATUS</span>
-                <span className="text-sm font-mono-tech font-bold text-emerald-400">ACTIVE</span>
+              <div className="px-3.5 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-center">
+                <span className="text-[10px] font-mono-tech text-slate-400 block font-semibold">STATUS</span>
+                <span className="text-sm font-mono-tech font-bold text-emerald-700">ACTIVE</span>
               </div>
             </div>
 
@@ -171,7 +168,7 @@ export const GithubUniverse: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => playCyberBeep(700, 0.04, 'triangle')}
-              className="px-5 py-2.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-mono-tech font-bold text-xs tracking-wider flex items-center gap-2 transition-all shadow-[0_0_20px_rgba(0,255,136,0.4)] cursor-pointer"
+              className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs tracking-wide flex items-center gap-2 transition-all shadow-xs cursor-pointer"
             >
               <span>VISIT GITHUB PROFILE</span>
               <ExternalLink className="w-3.5 h-3.5" />
@@ -179,14 +176,14 @@ export const GithubUniverse: React.FC = () => {
           </div>
         </div>
 
-        {/* Contribution Activity Telemetry Visualizer */}
-        <div className="glass-panel p-5 sm:p-6 rounded-2xl border border-white/10 mb-10">
-          <div className="flex items-center justify-between mb-3 text-xs font-mono-tech text-slate-400">
-            <div className="flex items-center gap-2 text-cyan-400">
-              <Activity className="w-4 h-4" />
-              <span>ACTIVITY TELEMETRY &amp; RECENT COMMITS</span>
+        {/* Contribution Activity Grid (Standard GitHub Style) */}
+        <div className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/90 mb-10 shadow-xs">
+          <div className="flex items-center justify-between mb-3 text-xs font-medium text-slate-600">
+            <div className="flex items-center gap-2 text-slate-800 font-semibold">
+              <Activity className="w-4 h-4 text-emerald-700" />
+              <span>COMMIT CADENCE &amp; ACTIVITY</span>
             </div>
-            <span className="hidden sm:inline">2026 CADENCE</span>
+            <span className="hidden sm:inline text-slate-400 font-mono-tech">2026 Telemetry</span>
           </div>
 
           <div className="grid grid-cols-12 sm:grid-cols-24 gap-1.5 py-2">
@@ -195,25 +192,25 @@ export const GithubUniverse: React.FC = () => {
                 key={i}
                 className={`h-4 rounded-[3px] transition-colors ${
                   lvl === 3
-                    ? 'bg-emerald-400 shadow-[0_0_6px_#00FF88]'
-                    : lvl === 2
                     ? 'bg-emerald-600'
+                    : lvl === 2
+                    ? 'bg-emerald-400'
                     : lvl === 1
-                    ? 'bg-emerald-950 border border-emerald-800/40'
-                    : 'bg-slate-900/80 border border-slate-800/60'
+                    ? 'bg-emerald-200'
+                    : 'bg-slate-100 border border-slate-200/60'
                 }`}
                 title={`Activity index: ${lvl}`}
               />
             ))}
           </div>
 
-          <div className="flex items-center justify-between text-[10px] font-mono-tech text-slate-500 pt-2 border-t border-slate-800/60 mt-2">
+          <div className="flex items-center justify-between text-[11px] font-mono-tech text-slate-400 pt-2 border-t border-slate-100 mt-2">
             <span>LESS</span>
             <div className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-sm bg-slate-900 border border-slate-800" />
-              <span className="w-2.5 h-2.5 rounded-sm bg-emerald-950 border border-emerald-800" />
-              <span className="w-2.5 h-2.5 rounded-sm bg-emerald-600" />
-              <span className="w-2.5 h-2.5 rounded-sm bg-emerald-400" />
+              <span className="w-2.5 h-2.5 rounded-xs bg-slate-100 border border-slate-200" />
+              <span className="w-2.5 h-2.5 rounded-xs bg-emerald-200" />
+              <span className="w-2.5 h-2.5 rounded-xs bg-emerald-400" />
+              <span className="w-2.5 h-2.5 rounded-xs bg-emerald-600" />
             </div>
             <span>MORE COMMITS</span>
           </div>
@@ -228,43 +225,43 @@ export const GithubUniverse: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => playCyberBeep(650, 0.03, 'sine')}
-              className="glass-panel p-6 rounded-2xl border border-white/10 hover:border-emerald-500/50 hover:shadow-[0_0_25px_rgba(0,255,136,0.15)] transition-all duration-300 flex flex-col justify-between group cursor-pointer"
+              className="bg-white p-6 rounded-2xl border border-slate-200/90 hover:border-slate-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between group shadow-xs cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <BookOpen className="w-4 h-4 text-emerald-400 group-hover:rotate-6 transition-transform" />
-                    <h4 className="font-heading font-bold text-base sm:text-lg text-white group-hover:text-emerald-300 transition-colors truncate max-w-[260px]">
+                  <div className="flex items-center gap-2.5">
+                    <BookOpen className="w-4 h-4 text-emerald-700" />
+                    <h4 className="font-heading font-bold text-base sm:text-lg text-slate-900 group-hover:text-emerald-700 transition-colors truncate max-w-[260px]">
                       {repo.name}
                     </h4>
                   </div>
-                  <ExternalLink className="w-3.5 h-3.5 text-slate-500 group-hover:text-emerald-400 transition-colors" />
+                  <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-800 transition-colors" />
                 </div>
 
-                <p className="text-xs sm:text-sm text-slate-300 font-mono-tech leading-relaxed mb-4 line-clamp-2">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 line-clamp-2">
                   {repo.description || 'Public software engineering repository and practical project source code.'}
                 </p>
               </div>
 
-              <div className="flex items-center justify-between text-xs font-mono-tech pt-3 border-t border-slate-800/80">
+              <div className="flex items-center justify-between text-xs font-mono-tech pt-3 border-t border-slate-100">
                 <div className="flex items-center gap-3">
                   {repo.language && (
-                    <span className="flex items-center gap-1.5 text-cyan-300">
-                      <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                    <span className="flex items-center gap-1.5 text-slate-700 font-medium">
+                      <span className="w-2 h-2 rounded-full bg-emerald-600" />
                       {repo.language}
                     </span>
                   )}
-                  <span className="flex items-center gap-1 text-slate-400">
-                    <Star className="w-3 h-3 text-amber-400" />
+                  <span className="flex items-center gap-1 text-slate-500">
+                    <Star className="w-3.5 h-3.5 text-amber-500" />
                     {repo.stargazers_count}
                   </span>
-                  <span className="flex items-center gap-1 text-slate-400">
-                    <GitFork className="w-3 h-3" />
+                  <span className="flex items-center gap-1 text-slate-500">
+                    <GitFork className="w-3.5 h-3.5 text-slate-400" />
                     {repo.forks_count}
                   </span>
                 </div>
 
-                <span className="text-emerald-400 text-[10px] group-hover:translate-x-1 transition-transform">
+                <span className="text-emerald-700 text-xs font-semibold group-hover:translate-x-0.5 transition-transform">
                   EXPLORE &gt;
                 </span>
               </div>
