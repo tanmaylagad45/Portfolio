@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 import { playCyberBeep } from '../utils/audio';
 import { GithubIcon } from './SocialIcons';
-
 export const Projects: React.FC = () => {
   const [isNexusModalOpen, setIsNexusModalOpen] = useState(false);
 
@@ -21,26 +20,26 @@ export const Projects: React.FC = () => {
   const velocity = PORTFOLIO_DATA.featuredProjects[1];
 
   return (
-    <section id="projects" className="relative py-28 px-4 sm:px-6 lg:px-8 bg-white border-t border-slate-200/80 overflow-hidden">
+    <section id="projects" className="relative py-28 px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#0F172A] border-t border-slate-200/80 dark:border-slate-800 transition-colors duration-200 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col items-start mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-[11px] font-mono-tech text-slate-600 mb-3 shadow-2xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[11px] font-mono-tech text-slate-600 dark:text-slate-400 mb-3 shadow-2xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400" />
             <span>04 // FEATURED WORKS &amp; SYSTEMS</span>
           </div>
-          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 tracking-tight">
-            FEATURED <span className="text-emerald-700">PROJECTS</span>
+          <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-slate-900 dark:text-white tracking-tight">
+            FEATURED <span className="text-emerald-700 dark:text-emerald-400">PROJECTS</span>
           </h2>
-          <div className="h-1 w-16 bg-emerald-600 mt-3 rounded-full" />
-          <p className="text-slate-600 text-sm sm:text-base mt-3 max-w-2xl">
+          <div className="h-1 w-16 bg-emerald-600 dark:bg-emerald-500 mt-3 rounded-full" />
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-3 max-w-2xl">
             Practical systems exploring artificial intelligence, graph relational modeling, and interactive web architecture. Built for real-world utility and verified at competitive podiums.
           </p>
         </div>
 
-        {/* Flagship Project 1: NEXUS (Sophisticated Technology Aesthetic) */}
+        {/* Flagship Project 1: NEXUS */}
         <div
-          className="relative bg-[#0F172A] rounded-3xl border border-slate-800 p-7 sm:p-10 mb-14 text-white shadow-lg overflow-hidden group hover:border-slate-700 transition-all duration-300"
+          className="relative bg-[#0F172A] dark:bg-[#111827] rounded-3xl border border-slate-800 dark:border-slate-750 p-7 sm:p-10 mb-14 text-white shadow-lg overflow-hidden group hover:border-slate-700 transition-all duration-300"
         >
           {/* Top highlight ribbon */}
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
@@ -87,7 +86,7 @@ export const Projects: React.FC = () => {
                 "{nexus.achievement?.note}"
               </div>
 
-              {/* Key Features (Requested in prompt) */}
+              {/* Key Features */}
               <div>
                 <span className="text-xs font-mono-tech text-slate-400 uppercase tracking-wider block mb-2 font-semibold">
                   KEY CAPABILITIES:
@@ -112,7 +111,7 @@ export const Projects: React.FC = () => {
                 </div>
               </div>
 
-              {/* My Contribution (Crucial for recruiters) */}
+              {/* My Contribution */}
               <div className="pt-1">
                 <span className="text-xs font-mono-tech text-slate-400 uppercase tracking-wider block mb-2 font-semibold">
                   MY CONTRIBUTION:
@@ -175,14 +174,14 @@ export const Projects: React.FC = () => {
           </div>
         </div>
 
-        {/* Project 2: Velocity Sports Shop (Premium Editorial Card) */}
-        <div className="bg-white rounded-3xl border border-slate-200/90 p-7 sm:p-9 mb-16 shadow-xs hover:border-slate-300 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+        {/* Project 2: Velocity Sports Shop */}
+        <div className="bg-white dark:bg-[#111827] rounded-3xl border border-slate-200/90 dark:border-slate-800 p-7 sm:p-9 mb-16 shadow-xs hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Visual Preview Card */}
-            <div className="lg:col-span-5 rounded-2xl bg-[#F8FAFC] border border-slate-200 p-6 flex flex-col justify-between h-72">
+            <div className="lg:col-span-5 rounded-2xl bg-[#F8FAFC] dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between h-72">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-slate-800">
-                  <ShoppingCart className="w-5 h-5 text-emerald-700" />
+                <div className="flex items-center gap-2 text-slate-800 dark:text-slate-200">
+                  <ShoppingCart className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />
                   <span className="text-xs font-semibold uppercase tracking-wide">
                     E-Commerce Web Platform
                   </span>
@@ -191,10 +190,10 @@ export const Projects: React.FC = () => {
               </div>
 
               <div className="space-y-2 py-4">
-                <div className="text-2xl font-heading font-extrabold text-slate-900">
+                <div className="text-2xl font-heading font-extrabold text-slate-900 dark:text-white">
                   VELOCITY SPORTS
                 </div>
-                <div className="text-xs text-slate-600 leading-relaxed">
+                <div className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
                   Interactive sports equipment showcase with dynamic cart calculations, filter categories, quantity adjustment, and responsive checkout interface.
                 </div>
                 <div className="flex gap-2 pt-2">
@@ -204,23 +203,23 @@ export const Projects: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between text-xs font-mono-tech text-slate-500 border-t border-slate-200 pt-3">
+              <div className="flex items-center justify-between text-xs font-mono-tech text-slate-500 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 pt-3">
                 <span>RESPONSIVE UI</span>
-                <span className="text-emerald-700 font-semibold">PRODUCTION READY</span>
+                <span className="text-emerald-700 dark:text-emerald-400 font-semibold">PRODUCTION READY</span>
               </div>
             </div>
 
             {/* Description & Recruiter Info */}
             <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-medium">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-medium">
                 <span>INTERACTIVE FULL-STACK WEB</span>
               </div>
 
-              <h3 className="font-heading font-bold text-2xl sm:text-3xl text-slate-900">
+              <h3 className="font-heading font-bold text-2xl sm:text-3xl text-slate-900 dark:text-white">
                 {velocity.title}
               </h3>
 
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
                 {velocity.description}
               </p>
 
@@ -229,9 +228,9 @@ export const Projects: React.FC = () => {
                 {velocity.features.map((feat, idx) => (
                   <div
                     key={idx}
-                    className="px-2.5 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80 text-xs font-medium text-slate-700 flex items-center gap-1.5"
+                    className="px-2.5 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700 text-xs font-medium text-slate-700 dark:text-slate-300 flex items-center gap-1.5"
                   >
-                    <span className="text-emerald-600">•</span>
+                    <span className="text-emerald-600 dark:text-emerald-400">•</span>
                     <span>{feat}</span>
                   </div>
                 ))}
@@ -239,12 +238,12 @@ export const Projects: React.FC = () => {
 
               {/* My Contribution */}
               <div>
-                <span className="text-xs font-mono-tech text-slate-500 uppercase tracking-wider block mb-1 font-semibold">
+                <span className="text-xs font-mono-tech text-slate-500 dark:text-slate-400 uppercase tracking-wider block mb-1 font-semibold">
                   MY CONTRIBUTION:
                 </span>
-                <div className="flex flex-wrap gap-2 text-xs text-slate-700">
+                <div className="flex flex-wrap gap-2 text-xs text-slate-700 dark:text-slate-300">
                   {velocity.involvement.map((inv, idx) => (
-                    <span key={idx} className="px-2.5 py-1 rounded bg-slate-100 text-slate-800 font-medium">
+                    <span key={idx} className="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-medium">
                       {inv}
                     </span>
                   ))}
@@ -253,11 +252,11 @@ export const Projects: React.FC = () => {
 
               {/* Tech Stack */}
               <div className="flex flex-wrap items-center gap-2 pt-1">
-                <span className="text-xs font-mono-tech text-slate-500 font-semibold">TECH STACK:</span>
+                <span className="text-xs font-mono-tech text-slate-500 dark:text-slate-400 font-semibold">TECH STACK:</span>
                 {velocity.technologies.map((t, idx) => (
                   <span
                     key={idx}
-                    className="px-2.5 py-1 rounded text-xs font-mono-tech bg-slate-100 border border-slate-200 text-slate-800 font-medium"
+                    className="px-2.5 py-1 rounded text-xs font-mono-tech bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-medium"
                   >
                     {t}
                   </span>
@@ -271,7 +270,7 @@ export const Projects: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => playCyberBeep(650, 0.03, 'sine')}
-                  className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold flex items-center gap-2 transition-all shadow-xs cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-slate-900 dark:bg-emerald-600 hover:bg-slate-800 dark:hover:bg-emerald-500 text-white text-xs font-semibold flex items-center gap-2 transition-all shadow-xs cursor-pointer"
                 >
                   <ExternalLink className="w-3.5 h-3.5" />
                   <span>VIEW PROJECT</span>
@@ -282,7 +281,7 @@ export const Projects: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => playCyberBeep(700, 0.03, 'sine')}
-                  className="px-5 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 text-xs font-semibold flex items-center gap-2 transition-all shadow-2xs cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold flex items-center gap-2 transition-all shadow-2xs cursor-pointer"
                 >
                   <GithubIcon className="w-3.5 h-3.5" />
                   <span>VIEW CODE</span>
@@ -292,14 +291,14 @@ export const Projects: React.FC = () => {
           </div>
         </div>
 
-        {/* Future Projects: Planned Horizons */}
+        {/* Future Projects */}
         <div className="mt-16">
           <div className="flex items-center gap-2 mb-6">
-            <Clock className="w-4 h-4 text-emerald-700" />
-            <h3 className="font-heading font-bold text-xl text-slate-900">
+            <Clock className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
+            <h3 className="font-heading font-bold text-xl text-slate-900 dark:text-white">
               UPCOMING PROJECTS // IN PROTOTYPING
             </h3>
-            <span className="text-xs text-slate-500 hidden sm:inline">
+            <span className="text-xs text-slate-500 dark:text-slate-400 hidden sm:inline">
               (Upcoming AI/ML &amp; Systems Engineering)
             </span>
           </div>
@@ -308,39 +307,39 @@ export const Projects: React.FC = () => {
             {PORTFOLIO_DATA.futureProjects.map((fProj, idx) => (
               <div
                 key={idx}
-                className="bg-white p-6 rounded-2xl border border-dashed border-slate-300 hover:border-emerald-500/70 shadow-xs hover:shadow-sm transition-all duration-200 flex flex-col justify-between group"
+                className="bg-white dark:bg-[#111827] p-6 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 hover:border-emerald-500/70 dark:hover:border-emerald-500 shadow-xs hover:shadow-sm transition-all duration-200 flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="px-2.5 py-0.5 rounded text-[11px] font-medium bg-emerald-50 border border-emerald-200 text-emerald-800">
+                    <span className="px-2.5 py-0.5 rounded text-[11px] font-medium bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300">
                       Planned
                     </span>
-                    <span className="text-[10px] font-mono-tech text-slate-400">
+                    <span className="text-[10px] font-mono-tech text-slate-400 dark:text-slate-500">
                       PROTOTYPE // 0{idx + 1}
                     </span>
                   </div>
 
-                  <h4 className="font-heading font-bold text-lg text-slate-900 group-hover:text-emerald-700 transition-colors mb-1">
+                  <h4 className="font-heading font-bold text-lg text-slate-900 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-400 transition-colors mb-1">
                     {fProj.title}
                   </h4>
-                  <div className="text-xs font-medium text-emerald-700 mb-3">
+                  <div className="text-xs font-medium text-emerald-700 dark:text-emerald-400 mb-3">
                     {fProj.category}
                   </div>
 
-                  <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                     {fProj.description}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-slate-100">
-                  <span className="text-[10px] font-mono-tech text-slate-400 block mb-1.5 font-semibold">
+                <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
+                  <span className="text-[10px] font-mono-tech text-slate-400 dark:text-slate-500 block mb-1.5 font-semibold">
                     PLANNED STACK:
                   </span>
                   <div className="flex flex-wrap gap-1">
                     {fProj.plannedStack.map((tech, tIdx) => (
                       <span
                         key={tIdx}
-                        className="px-2 py-0.5 rounded text-[10px] font-mono-tech bg-slate-100 border border-slate-200 text-slate-700"
+                        className="px-2 py-0.5 rounded text-[10px] font-mono-tech bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300"
                       >
                         {tech}
                       </span>

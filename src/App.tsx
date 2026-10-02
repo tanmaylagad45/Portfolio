@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ThemeProvider } from './context/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -13,15 +14,15 @@ import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
 import { CustomCursor } from './components/CustomCursor';
 
-export function App() {
+function PortfolioApp() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen bg-[#F7F8FA] text-[#111827] selection:bg-[#16A34A]/20 selection:text-[#16A34A] overflow-x-hidden">
-      {/* Custom Cyber Cursor */}
+    <div className="relative min-h-screen bg-[var(--bg-main)] text-[var(--text-primary)] selection:bg-emerald-500/20 selection:text-emerald-600 dark:selection:text-emerald-400 overflow-x-hidden transition-colors duration-200">
+      {/* Custom Minimal Cursor */}
       <CustomCursor />
 
-      {/* Navigation Header */}
+      {/* Navigation Header with Theme Toggle */}
       <Navbar onOpenResume={() => setIsResumeOpen(true)} />
 
       {/* Main Content Sections */}
@@ -63,6 +64,14 @@ export function App() {
         onClose={() => setIsResumeOpen(false)}
       />
     </div>
+  );
+}
+
+export function App() {
+  return (
+    <ThemeProvider>
+      <PortfolioApp />
+    </ThemeProvider>
   );
 }
 
